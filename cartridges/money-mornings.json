@@ -1,0 +1,42 @@
+{
+  "schema": "content-cartridge/1",
+  "slug": "money-mornings",
+  "name": "Money Mornings",
+  "audience": "creative freelancers who open their banking app with one eye shut",
+  "promise": "Ten calm minutes a week and you will always know where your money is.",
+  "cta": "Grab the Monday money page. Comment MORNING and I will send it.",
+  "stories": [
+    "I used to hide invoices in a shoebox. A real shoebox.",
+    "A client paid me six months late and I did not notice for four of them.",
+    "Now I do my numbers with coffee every Monday and it is my favourite part of the week."
+  ],
+  "posts": [
+    {"title": "The shoebox", "format": "reel",
+     "hook": "I kept my invoices in a shoebox for two years.",
+     "beats": ["Show the shoebox", "The day I opened it", "What I do instead now", "Comment MORNING for the page"]},
+    {"title": "Ten minute Monday", "format": "carousel",
+     "hook": "My whole money routine fits in one coffee.",
+     "beats": ["Open the bank, no flinching", "Mark who has paid", "Move the tax money", "Write one number down", "Close the laptop"]},
+    {"title": "Paid late, noticed later", "format": "post",
+     "hook": "A client paid me six months late. I noticed four months in.",
+     "beats": ["What that cost me", "The one list that fixes it"]},
+    {"title": "Tax pot check", "format": "story",
+     "hook": "Quick one: do you move your tax money the day you get paid?",
+     "beats": ["Yes or not yet poll", "Share the results tomorrow"]},
+    {"title": "Money with coffee", "format": "live",
+     "hook": "Bring your coffee, we do our numbers together.",
+     "beats": ["Ten minutes on screen, live", "Answer two questions", "Send them the page"]},
+    {"title": "Your Monday page", "format": "email",
+     "hook": "Here is the page I fill in every Monday.",
+     "beats": ["Why paper first", "How to fill it in", "Reply and tell me your one number"]},
+    {"title": "Invoice like you mean it", "format": "reel",
+     "hook": "Send the invoice the same day. Every time.",
+     "beats": ["Finish the job", "Invoice before you close the laptop", "Watch what changes"]}
+  ],
+  "shot_list": [
+    {"shot": "Lid off the shoebox, overhead"},
+    {"shot": "Coffee poured next to an open notebook", "note": "warm light"},
+    {"shot": "Pen writing one number, close up"},
+    {"shot": "Laptop closing", "note": "end shot"}
+  ]
+}

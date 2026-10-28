@@ -1,0 +1,36 @@
+{
+  "schema": "content-cartridge/1",
+  "slug": "studio-rituals",
+  "name": "Studio Rituals",
+  "audience": "women in their forties coming back to movement after a long break",
+  "promise": "A strong, steady body without the bootcamp energy.",
+  "cta": "Your first class is on the house. Send me the word RITUAL.",
+  "stories": [
+    "I opened this studio after a back injury that took me two years to come back from.",
+    "Our oldest regular is seventy one and she holds the longest plank in the room.",
+    "We light a candle at the start of every class. People notice when we forget."
+  ],
+  "posts": [
+    {"title": "Two years back", "format": "reel",
+     "hook": "I could not touch my toes for two years. This is the studio I built after.",
+     "beats": ["Old photo of the back brace", "First class I taught", "Why everything here is slow on purpose", "Send me RITUAL"]},
+    {"title": "The candle", "format": "post",
+     "hook": "We light a candle before every class. People notice when we forget.",
+     "beats": ["Why a ritual helps you arrive", "What happens in the first five minutes"]},
+    {"title": "The seventy one plank", "format": "carousel",
+     "hook": "Our oldest regular holds the longest plank in the room.",
+     "beats": ["Her first class", "Her plank now", "What she told me about starting again", "Your first class is free"]},
+    {"title": "Which one today?", "format": "story",
+     "hook": "Stretch or strength tonight? You choose the class.",
+     "beats": ["Poll", "Post the class plan from the winner"]},
+    {"title": "Come back gently", "format": "email",
+     "hook": "If it has been a while, start here.",
+     "beats": ["Three moves for this week", "What to tell me before class", "Book your free class"]}
+  ],
+  "shot_list": [
+    {"shot": "Match striking, candle lit", "note": "the opening shot"},
+    {"shot": "Feet on the mat, slow pan up"},
+    {"shot": "A plank held, side angle", "note": "hold for the count"},
+    {"shot": "Empty studio, morning light"}
+  ]
+}

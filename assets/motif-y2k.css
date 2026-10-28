@@ -1,0 +1,39 @@
+/* y2k-blog: the handheld inside a cream OS 9 window with a 2003 blog sidebar. */
+body.m-y2k-blog { padding: 20px 12px 40px;
+  background-color: var(--blush);
+  background-image: radial-gradient(var(--candy) 1.5px, transparent 1.6px), radial-gradient(var(--candy) 1.5px, transparent 1.6px);
+  background-size: 28px 28px; background-position: 0 0, 14px 14px; }
+.win { max-width: 860px; margin: 0 auto; background: var(--cream); color: var(--ink); border: 2px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--ink); }
+.titlebar { display: flex; align-items: center; gap: 10px; padding: 6px 10px; background: var(--plum); color: var(--cream);
+  border-bottom: 2px solid var(--ink);
+  background-image: repeating-linear-gradient(0deg, rgba(255, 247, 244, .12) 0 1px, transparent 1px 3px); }
+.btns { display: flex; gap: 5px; }
+.btns i { width: 12px; height: 12px; background: var(--gold); border: 1px solid var(--ink); }
+.title { font-size: 12px; letter-spacing: .04em; margin: 0 auto; }
+.marquee { overflow: hidden; white-space: nowrap; border-bottom: 1px solid var(--ink); background: var(--blush);
+  font: 500 12px/1 var(--mono); color: var(--wine); padding: 6px 0; }
+.marquee span { display: inline-flex; align-items: center; gap: 8px; padding-left: 100%; animation: marquee 22s linear infinite; }
+.marquee .pix, .sparkle .pix { color: var(--gold); }
+@keyframes marquee { to { transform: translateX(-100%); } }
+@media (prefers-reduced-motion: reduce) { .marquee span { animation: none; padding-left: 12px; } }
+.still .marquee span { animation: none; padding-left: 12px; }
+.winbody { display: grid; grid-template-columns: 1fr 190px; }
+.winbody .post { background: radial-gradient(120% 80% at 50% 0%, var(--ground), var(--ink)); min-width: 0; }
+.winbody .play { padding: 22px 12px 28px; gap: 22px; }
+.side { border-left: 2px solid var(--ink); padding: 12px; font: 400 13px/1.4 var(--label); }
+.side section { border: 1px solid var(--ink); background: var(--blush); padding: 8px; margin-bottom: 10px; }
+.side h3 { margin: 0 0 4px; font-size: 10px; letter-spacing: .06em; color: var(--wine); font-weight: 400; }
+.side p { margin: 0; }
+.counter b { font: 500 18px/1.3 var(--mono); background: var(--ink); color: var(--gold); padding: 0 6px; }
+.guest a { color: var(--marker); }
+.sparkle { text-align: center; color: var(--gold); margin: 6px 0 !important; }
+.updated { font: 400 11px/1.3 var(--mono); color: var(--wine); }
+@media (max-width: 720px) {
+  .winbody { grid-template-columns: 1fr; }
+  .side { border-left: 0; border-top: 2px solid var(--ink); display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .side section { margin: 0; }
+  .side .sparkle, .side .updated { grid-column: 1 / -1; }
+}
+@media (max-width: 420px) { body.m-y2k-blog { padding: 12px 8px 30px; } .win { box-shadow: 4px 4px 0 var(--ink); }
+  .winbody .play { padding: 18px 6px 24px; } }

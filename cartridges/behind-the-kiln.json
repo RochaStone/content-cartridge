@@ -1,0 +1,40 @@
+{
+  "schema": "content-cartridge/1",
+  "slug": "behind-the-kiln",
+  "name": "Behind the Kiln",
+  "audience": "women who want one hobby that makes them put the phone down",
+  "promise": "You will leave with a mug you made and two hours where nobody needed anything from you.",
+  "cta": "Book a Thursday wheel night. Link in bio, six seats a week.",
+  "stories": [
+    "The first bowl I ever threw collapsed and I laughed so hard I cried. I kept it.",
+    "A student told me Thursday is the only night her phone stays in her bag.",
+    "I cracked a whole kiln load in March and opened the studio anyway."
+  ],
+  "posts": [
+    {"title": "The bowl I kept", "format": "reel",
+     "hook": "My first bowl collapsed on the wheel. It is still on my shelf.",
+     "beats": ["Show the wonky bowl in my hands", "Why I kept it", "What clay teaches about getting it wrong", "Every first bowl collapses. Come make yours."]},
+    {"title": "Phone in the bag", "format": "carousel",
+     "hook": "Two hours. Phone in the bag. Hands in the clay.",
+     "beats": ["What a Thursday wheel night looks like, slide by slide", "The moment the phone goes away", "What people say on the way out", "Six seats a week"]},
+    {"title": "The cracked kiln", "format": "post",
+     "hook": "I lost a whole kiln load in March. Here is what I did next.",
+     "beats": ["The photo of the cracked pieces", "Opening the studio anyway", "Why imperfect is the point"]},
+    {"title": "Glaze day", "format": "story",
+     "hook": "Pick my next glaze. Two options, you decide.",
+     "beats": ["Poll with two test tiles", "Show the result the next day"]},
+    {"title": "Ask me anything clay", "format": "live",
+     "hook": "Bring your questions, I will be at the wheel.",
+     "beats": ["Throw a cylinder while I answer", "Talk through centring", "Invite them to Thursday"]},
+    {"title": "Thursday is open", "format": "email",
+     "hook": "The seat with your name on it.",
+     "beats": ["One story from last week", "What to wear and what to bring", "Book the seat"]}
+  ],
+  "shot_list": [
+    {"shot": "Hands centring clay, close up", "note": "morning window light"},
+    {"shot": "The wonky first bowl on the shelf", "note": "slow push in"},
+    {"shot": "Phone dropped into a canvas bag"},
+    {"shot": "Wheel spinning, top down", "note": "hold 3 seconds"},
+    {"shot": "Finished mugs on the drying rack"}
+  ]
+}

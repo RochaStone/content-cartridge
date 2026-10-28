@@ -1,0 +1,98 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rocha Coded//content-cartridge//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Money Mornings
+BEGIN:VEVENT
+UID:money-mornings-20261102-0@content-cartridge
+DTSTAMP:20261101T000000Z
+DTSTART;VALUE=DATE:20261102
+DTEND;VALUE=DATE:20261103
+SUMMARY:[Reel] The shoebox
+DESCRIPTION:Hook: I kept my invoices in a shoebox for two years.\n\n- Show 
+ the shoebox\n- The day I opened it\n- What I do instead now\n- Comment MOR
+ NING for the page\n\nCTA: Grab the Monday money page. Comment MORNING and 
+ I will send it.\nPillar: Money Mornings
+CATEGORIES:Money Mornings
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:money-mornings-20261103-1@content-cartridge
+DTSTAMP:20261101T000000Z
+DTSTART;VALUE=DATE:20261103
+DTEND;VALUE=DATE:20261104
+SUMMARY:[Carousel] Ten minute Monday
+DESCRIPTION:Hook: My whole money routine fits in one coffee.\n\n- Open the 
+ bank\, no flinching\n- Mark who has paid\n- Move the tax money\n- Write on
+ e number down\n- Close the laptop\n\nCTA: Grab the Monday money page. Comm
+ ent MORNING and I will send it.\nPillar: Money Mornings
+CATEGORIES:Money Mornings
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:money-mornings-20261104-2@content-cartridge
+DTSTAMP:20261101T000000Z
+DTSTART;VALUE=DATE:20261104
+DTEND;VALUE=DATE:20261105
+SUMMARY:[Post] Paid late\, noticed later
+DESCRIPTION:Hook: A client paid me six months late. I noticed four months i
+ n.\n\n- What that cost me\n- The one list that fixes it\n\nCTA: Grab the M
+ onday money page. Comment MORNING and I will send it.\nPillar: Money Morni
+ ngs
+CATEGORIES:Money Mornings
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:money-mornings-20261105-3@content-cartridge
+DTSTAMP:20261101T000000Z
+DTSTART;VALUE=DATE:20261105
+DTEND;VALUE=DATE:20261106
+SUMMARY:[Story] Tax pot check
+DESCRIPTION:Hook: Quick one: do you move your tax money the day you get pai
+ d?\n\n- Yes or not yet poll\n- Share the results tomorrow\n\nCTA: Grab the
+  Monday money page. Comment MORNING and I will send it.\nPillar: Money Mor
+ nings
+CATEGORIES:Money Mornings
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:money-mornings-20261106-4@content-cartridge
+DTSTAMP:20261101T000000Z
+DTSTART;VALUE=DATE:20261106
+DTEND;VALUE=DATE:20261107
+SUMMARY:[Live] Money with coffee
+DESCRIPTION:Hook: Bring your coffee\, we do our numbers together.\n\n- Ten 
+ minutes on screen\, live\n- Answer two questions\n- Send them the page\n\n
+ CTA: Grab the Monday money page. Comment MORNING and I will send it.\nPill
+ ar: Money Mornings
+CATEGORIES:Money Mornings
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:money-mornings-20261107-5@content-cartridge
+DTSTAMP:20261101T000000Z
+DTSTART;VALUE=DATE:20261107
+DTEND;VALUE=DATE:20261108
+SUMMARY:[Email] Your Monday page
+DESCRIPTION:Hook: Here is the page I fill in every Monday.\n\n- Why paper f
+ irst\n- How to fill it in\n- Reply and tell me your one number\n\nCTA: Gra
+ b the Monday money page. Comment MORNING and I will send it.\nPillar: Mone
+ y Mornings
+CATEGORIES:Money Mornings
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:money-mornings-20261108-6@content-cartridge
+DTSTAMP:20261101T000000Z
+DTSTART;VALUE=DATE:20261108
+DTEND;VALUE=DATE:20261109
+SUMMARY:[Reel] Invoice like you mean it
+DESCRIPTION:Hook: Send the invoice the same day. Every time.\n\n- Finish th
+ e job\n- Invoice before you close the laptop\n- Watch what changes\n\nCTA:
+  Grab the Monday money page. Comment MORNING and I will send it.\nPillar: 
+ Money Mornings
+CATEGORIES:Money Mornings
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

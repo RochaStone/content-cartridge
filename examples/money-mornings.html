@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Money Mornings · content cartridge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>/* content-cartridge base: tokens, the handheld (cyberpunk), the manual, and the print sheet. */
+:root {
+  --ground: #50163C; --plum: #50163C; --wine: #682047; --candy: #FE9DCA; --cream: #FFF7F4;
+  --blush: #FFE3F1; --ink: #3B1230; --marker: #C2246E; --gold: #E9B949;
+  --display: "Fraunces", Georgia, serif; --label: "Bricolage Grotesque", system-ui, sans-serif;
+  --body: "Fraunces", Georgia, serif; --mono: "DM Mono", ui-monospace, Menlo, monospace;
+  --scrawl: "Permanent Marker", "Marker Felt", cursive; --pixel: "Silkscreen", ui-monospace, monospace;
+  --hh: min(360px, calc(100vw - 32px));
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; min-height: 100vh; color: var(--cream); font-family: var(--label);
+  background: radial-gradient(120% 70% at 50% 0%, var(--ground), var(--ink)); overflow-x: hidden; }
+button { font: inherit; cursor: pointer; }
+.px { font-family: var(--pixel); }
+.play { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 28px;
+  padding: 28px 16px 40px; }
+
+/* ---------- the handheld ---------- */
+.handheld { width: var(--hh); position: relative; padding-top: 76px; flex: none; }
+.cart { position: absolute; top: 0; left: 14%; right: 14%; height: 86px; background: var(--wine);
+  border-radius: 8px 8px 0 0; padding: 8px 12px 0; }
+.cart-ridges { height: 6px; margin: 0 18px 6px; border-top: 2px solid var(--plum); border-bottom: 2px solid var(--plum); }
+.cart-label { background: var(--blush); color: var(--ink); border-top: 3px solid var(--gold); padding: 5px 10px 6px;
+  display: flex; flex-direction: column; line-height: 1.05; min-height: 52px; }
+.cart-kicker { font: 800 9px/1 var(--label); letter-spacing: .08em; text-transform: uppercase; color: var(--wine); }
+.cart-label b { font: 900 17px/1.05 var(--display); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cart-scrawl { font: 400 11px/1.2 var(--scrawl); color: var(--marker); font-style: normal;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.shell { position: relative; background: linear-gradient(170deg, var(--wine), var(--plum) 46%);
+  border-radius: 22px 22px 64px 22px; padding: 20px 18px 30px; border: 2px solid var(--ink);
+  box-shadow: 0 18px 30px rgba(20, 6, 16, .45), inset 0 2px 0 rgba(255, 247, 244, .12); }
+.screw { position: absolute; width: 9px; height: 9px; border-radius: 50%; background: var(--gold); top: 10px;
+  box-shadow: inset 0 0 0 1px var(--ink); }
+.screw::after { content: ""; position: absolute; left: 1px; right: 1px; top: 4px; height: 1px; background: var(--ink); }
+.screw.tl { left: 10px; } .screw.tr { right: 10px; }
+.bezel { background: var(--ink); border-radius: 10px 10px 34px 10px; padding: 10px 14px 10px; }
+.bezel-top { display: flex; align-items: center; gap: 6px; font: 800 8px/1 var(--label); letter-spacing: .1em;
+  text-transform: uppercase; color: var(--blush); margin-bottom: 8px; }
+.bezel-rule { flex: 1; height: 2px; border-top: 1px solid var(--gold); border-bottom: 1px solid var(--candy); opacity: .8; }
+.led { width: 7px; height: 7px; border-radius: 50%; background: var(--candy); }
+.bezel-bottom { margin: 7px 0 0; font: 400 9px/1 var(--mono); color: var(--blush); opacity: .85; text-align: center; }
+.screen { background: var(--cream); color: var(--ink); border-radius: 3px; height: 236px; padding: 9px 10px;
+  position: relative; overflow: hidden; outline: none; }
+.screen::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgba(59, 18, 48, .045) 0 1px, transparent 1px 3px); }
+.screen:focus-visible { box-shadow: 0 0 0 2px var(--gold); }
+.boot { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; gap: 12px; }
+.boot p { margin: 0; }
+.boot-k { font-size: 10px; letter-spacing: .1em; color: var(--wine); }
+.boot-t { font-size: 18px; line-height: 1.2; max-width: 100%; overflow-wrap: anywhere; }
+.boot-start { font-size: 12px; color: var(--marker); }
+.blink { animation: blink 1.1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .blink { animation: none; } }
+.still .blink { animation: none; }
+.weekview { font-size: 10px; line-height: 1; }
+.weekview[hidden], .boot[hidden] { display: none; }
+.wk-head { display: flex; justify-content: space-between; gap: 8px; margin: 0 0 6px; padding-bottom: 5px;
+  border-bottom: 2px dashed var(--wine); }
+.wk-head span:first-child { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.wk-date { flex: none; color: var(--wine); }
+.week { list-style: none; margin: 0; padding: 0; }
+.row { display: grid; grid-template-columns: 30px 18px 1fr 12px; align-items: center; gap: 4px; height: 24px;
+  padding: 0 4px; border-radius: 2px; cursor: pointer; }
+.row .d { color: var(--wine); }
+.row .slot { display: flex; align-items: center; gap: 5px; min-width: 0; }
+.row .ttl { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.fmt { flex: none; font-size: 8px; padding: 2px 3px 1px; background: var(--candy); color: var(--ink); }
+.fmt.rest { background: transparent; outline: 1px dashed var(--wine); color: var(--wine); }
+.chk { width: 10px; height: 10px; border: 2px solid var(--ink); }
+.row.done .chk { background: var(--ink); box-shadow: inset 0 0 0 2px var(--cream); }
+.row.done .ttl { text-decoration: line-through; opacity: .6; }
+.row.sel { background: var(--ink); color: var(--cream); }
+.row.sel .d, .row.sel .fmt.rest { color: var(--candy); }
+.row.sel .chk { border-color: var(--cream); }
+.row.sel.done .chk { background: var(--cream); box-shadow: inset 0 0 0 2px var(--ink); }
+.row.held { outline: 2px dashed var(--marker); outline-offset: -2px; }
+.status { margin: 6px 0 0; padding-top: 5px; border-top: 2px dashed var(--wine); font-size: 9px; color: var(--wine); }
+.logo { margin: 12px 4px 0; font: 900 italic 19px/1 var(--display); color: var(--cream); display: flex;
+  align-items: baseline; gap: 7px; }
+.logo span { font: 800 9px/1 var(--label); font-style: normal; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+.controls { display: flex; justify-content: space-between; align-items: center; margin: 18px 2px 0; }
+.dpad { display: grid; grid-template: repeat(3, 34px) / repeat(3, 34px); }
+.dpad button, .dpad .mid { background: var(--ink); border: 0; padding: 0; }
+.dpad .up { grid-area: 1 / 2; border-radius: 4px 4px 0 0; } .dpad .left { grid-area: 2 / 1; border-radius: 4px 0 0 4px; }
+.dpad .mid { grid-area: 2 / 2; } .dpad .right { grid-area: 2 / 3; border-radius: 0 4px 4px 0; }
+.dpad .down { grid-area: 3 / 2; border-radius: 0 0 4px 4px; }
+.dpad button::after { content: ""; display: block; margin: auto; width: 0; height: 0; border: 5px solid transparent; }
+.dpad .up::after { border-bottom-color: var(--gold); margin-top: 8px; }
+.dpad .down::after { border-top-color: var(--gold); margin-top: 14px; }
+.dpad .left::after { border-right-color: var(--gold); margin-left: 8px; }
+.dpad .right::after { border-left-color: var(--gold); margin-left: 16px; }
+.dpad button:active, .btn:active, .pills button:active { transform: translateY(1px); }
+.ab { display: flex; gap: 14px; transform: rotate(-24deg); margin-right: 4px; }
+.ab-cell, .pill-cell { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+.ab small, .pill-cell small { font: 800 9px/1 var(--label); letter-spacing: .12em; text-transform: uppercase; color: var(--blush); }
+.btn { width: 46px; height: 46px; border-radius: 50%; border: 2px solid var(--ink); background: var(--candy);
+  color: var(--ink); font: 800 16px/1 var(--label); box-shadow: 0 3px 0 var(--ink); }
+.btn.b { background: var(--gold); }
+.pills { display: flex; justify-content: flex-start; gap: 12px; margin: 20px 0 0 4px; }
+.pills button { width: 44px; height: 13px; border-radius: 8px; border: 2px solid var(--ink); background: var(--ink); }
+.pills button.cream { background: var(--blush); }
+.grille { position: absolute; right: 30px; bottom: 18px; display: flex; gap: 6px; transform: rotate(-28deg); }
+.grille i { width: 5px; height: 30px; border-radius: 3px; background: var(--ink); opacity: .8; }
+
+/* ---------- the manual beside the handheld ---------- */
+.manual { width: min(380px, calc(100vw - 32px)); background: var(--cream); color: var(--ink); padding: 18px 18px 14px;
+  border-top: 4px solid var(--gold); box-shadow: 0 12px 24px rgba(20, 6, 16, .35); font-family: var(--body); }
+.m-kicker { margin: 0 0 8px; font: 500 12px/1 var(--mono); color: var(--wine); letter-spacing: .06em; }
+.m-fmt { margin: 0 0 6px; }
+.pill { display: inline-block; font: 800 10px/1 var(--label); letter-spacing: .08em; text-transform: uppercase;
+  padding: 4px 8px 3px; border-radius: 999px; background: var(--candy); color: var(--ink); vertical-align: middle; }
+.m-title { margin: 0 0 8px; font: 900 24px/1.1 var(--display); color: var(--wine); overflow-wrap: anywhere; }
+.m-hook { margin: 0 0 8px; font-size: 16px; line-height: 1.4; }
+.m-beats { margin: 0 0 10px; padding-left: 20px; font-size: 15px; line-height: 1.45; }
+.m-cta { margin: 0 0 10px; padding: 8px 10px; background: var(--blush); font-size: 15px; line-height: 1.4; }
+.m-more { border-top: 1px solid var(--gold); padding: 8px 0 2px; font-size: 14px; line-height: 1.45; }
+.m-more summary { font: 800 12px/1.4 var(--label); letter-spacing: .08em; text-transform: uppercase; cursor: pointer; color: var(--wine); }
+.m-more p { margin: 6px 0; }
+.m-shots { padding-left: 20px; margin: 6px 0; }
+.m-shots span { display: block; font: 400 12px/1.4 var(--mono); color: var(--wine); }
+
+/* ---------- the sheet: hidden on screen in the handheld motifs, the whole page in analog ---------- */
+.m-cyberpunk .sheet, .m-y2k-blog .sheet { display: none; }
+.sheet { background: var(--cream); color: var(--ink); font-family: var(--body); }
+.s-label { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start;
+  border: 2px solid var(--ink); border-top: 6px solid var(--wine); padding: 12px 14px; background: var(--blush); }
+.s-kicker { font: 500 11px/1.3 var(--mono); letter-spacing: .04em; color: var(--wine); }
+.s-label h1 { margin: 4px 0 6px; font: 900 34px/1 var(--display); color: var(--wine); overflow-wrap: anywhere; }
+.s-for, .s-promise { margin: 0 0 4px; font-size: 14px; line-height: 1.35; }
+.s-for b { font: 800 11px/1 var(--label); text-transform: uppercase; letter-spacing: .08em; }
+.s-scrawl { margin: 6px 0 0; font: 400 17px/1.1 var(--scrawl); color: var(--marker); transform: rotate(-2deg); }
+.stamp { flex: none; font: 900 18px/1 var(--display); letter-spacing: .08em; color: var(--marker);
+  border: 3px double var(--marker); padding: 6px 8px; transform: rotate(8deg); margin-top: 6px; }
+.s-week { list-style: none; margin: 12px 0; padding: 0; border-top: 2px solid var(--ink); }
+.s-row { display: grid; grid-template-columns: 22px 46px 1fr; gap: 10px; padding: 8px 2px;
+  border-bottom: 1px solid var(--ink); align-items: start; }
+.box { width: 18px; height: 18px; margin-top: 2px; border: 2px solid var(--ink); background: transparent; padding: 0; }
+.s-row.done .box { background: var(--ink); box-shadow: inset 0 0 0 3px var(--cream); }
+.s-row.done .s-title { text-decoration: line-through; }
+.s-day { font: 500 12px/1.1 var(--mono); color: var(--wine); display: flex; flex-direction: column; }
+.s-day b { font: 900 22px/1 var(--display); color: var(--ink); }
+.s-slot p { margin: 0; }
+.s-title { font: 800 15px/1.25 var(--label); }
+.s-title.rest { color: var(--wine); }
+.s-title .pill { font-size: 9px; padding: 3px 6px 2px; margin-left: 4px; }
+.s-hook { font-size: 14px; line-height: 1.35; margin-top: 2px; }
+.s-beats { margin: 4px 0 0; padding-left: 16px; font: 400 12px/1.4 var(--mono); }
+.s-foot { display: grid; grid-template-columns: 1.4fr 1fr; gap: 16px; }
+.s-foot h2 { margin: 0 0 6px; font: 800 11px/1 var(--label); letter-spacing: .12em; text-transform: uppercase; color: var(--wine); }
+.s-shots ol { margin: 0; padding-left: 18px; font-size: 13px; line-height: 1.4; }
+.s-shots span { font: 400 11px/1.3 var(--mono); color: var(--wine); }
+.s-cta p { margin: 0 0 8px; font-size: 14px; line-height: 1.4; }
+.s-credit { font: 400 11px/1.3 var(--mono) !important; color: var(--wine); }
+
+/* ---------- print: one page, cartridge label plus week sheet, whatever the motif ---------- */
+@media print {
+  @page { size: A4; margin: 10mm; }
+  body { background: #fff; min-height: 0; }
+  .play, .win, .toolbar { display: none !important; }
+  .m-cyberpunk .sheet, .m-y2k-blog .sheet, .sheet { display: block !important; width: auto; margin: 0;
+    padding: 0; box-shadow: none; background: #fff; }
+  .s-label h1 { font-size: 26px; }
+  .s-row { padding: 4px 2px; break-inside: avoid; }
+  .s-hook { font-size: 11px; } .s-title { font-size: 12px; } .s-beats { font-size: 9.5px; line-height: 1.3; }
+  .s-day b { font-size: 16px; }
+  .s-shots ol, .s-cta p { font-size: 10.5px; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap">
+<style>:root { --ground: #50163C; --plum: #50163C; --wine: #682047; --candy: #FE9DCA; --cream: #FFF7F4; --blush: #FFE3F1; --ink: #3B1230; --marker: #C2246E; --gold: #E9B949; --display: "Fraunces", Georgia, "Times New Roman", serif; --label: "Bricolage Grotesque", system-ui, "Helvetica Neue", Arial, sans-serif; --body: "Fraunces", Georgia, "Times New Roman", serif; --mono: "DM Mono", ui-monospace, Menlo, Consolas, monospace; --scrawl: "Permanent Marker", "Marker Felt", "Comic Sans MS", cursive; --pixel: "Silkscreen", "Pixelify Sans", ui-monospace, monospace; }</style></head>
+<body class="m-cyberpunk">
+<div class="play"><section class="handheld" aria-label="Content cartridge handheld">
+  <div class="cart" aria-hidden="true"><div class="cart-ridges"></div>
+    <div class="cart-label"><span class="cart-kicker">content cartridge</span><b>Money Mornings</b><i class="cart-scrawl">build your founder world</i></div></div>
+  <div class="shell">
+    <span class="screw tl"></span><span class="screw tr"></span>
+    <div class="bezel">
+      <div class="bezel-top"><span class="led" aria-hidden="true"></span><span>power</span><span class="bezel-rule"></span></div>
+      <div class="screen" id="screen" tabindex="0" aria-label="Screen. Arrow keys move, A marks done, B swaps, Enter is START.">
+        <div class="boot px">
+          <p class="boot-k">cartridge in</p>
+          <p class="boot-t">Money Mornings</p>
+          <p class="boot-start"><span class="blink">press start</span></p>
+        </div>
+        <div class="weekview px" hidden>
+          <p class="wk-head"><span>Money Mornings</span><span class="wk-date">wk 02 Nov</span></p>
+          <ol class="week"><li class="row sel" data-day="0"><span class="d">MON</span><span class="dt">02</span><span class="slot"><span class="fmt">RL</span><span class="ttl">The shoebox</span></span><span class="chk" aria-hidden="true"></span></li><li class="row" data-day="1"><span class="d">TUE</span><span class="dt">03</span><span class="slot"><span class="fmt">CA</span><span class="ttl">Ten minute Monday</span></span><span class="chk" aria-hidden="true"></span></li><li class="row" data-day="2"><span class="d">WED</span><span class="dt">04</span><span class="slot"><span class="fmt">PO</span><span class="ttl">Paid late, noticed later</span></span><span class="chk" aria-hidden="true"></span></li><li class="row" data-day="3"><span class="d">THU</span><span class="dt">05</span><span class="slot"><span class="fmt">ST</span><span class="ttl">Tax pot check</span></span><span class="chk" aria-hidden="true"></span></li><li class="row" data-day="4"><span class="d">FRI</span><span class="dt">06</span><span class="slot"><span class="fmt">LV</span><span class="ttl">Money with coffee</span></span><span class="chk" aria-hidden="true"></span></li><li class="row" data-day="5"><span class="d">SAT</span><span class="dt">07</span><span class="slot"><span class="fmt">EM</span><span class="ttl">Your Monday page</span></span><span class="chk" aria-hidden="true"></span></li><li class="row" data-day="6"><span class="d">SUN</span><span class="dt">08</span><span class="slot"><span class="fmt">RL</span><span class="ttl">Invoice like you mean it</span></span><span class="chk" aria-hidden="true"></span></li></ol>
+          <p class="status" aria-live="polite">A done · B swap · SEL shuffle</p>
+        </div>
+      </div>
+      <p class="bezel-bottom">week of Mon 02 Nov 2026</p>
+    </div>
+    <p class="logo">Rocha Coded<span>handheld</span></p>
+    <div class="controls">
+      <div class="dpad" role="group" aria-label="Direction pad">
+        <button class="up" data-k="up" aria-label="Up"></button><button class="left" data-k="left" aria-label="Left"></button>
+        <span class="mid"></span>
+        <button class="right" data-k="right" aria-label="Right"></button><button class="down" data-k="down" aria-label="Down"></button>
+      </div>
+      <div class="ab">
+        <span class="ab-cell"><button class="btn b" data-k="b" aria-label="B, swap days">B</button><small>swap</small></span>
+        <span class="ab-cell"><button class="btn a" data-k="a" aria-label="A, mark done">A</button><small>done</small></span>
+      </div>
+    </div>
+    <div class="pills">
+      <span class="pill-cell"><button data-k="select" aria-label="Select, shuffle the week"></button><small>select</small></span>
+      <span class="pill-cell"><button data-k="start" aria-label="Start, lay out the week"></button><small>start</small></span>
+      <span class="pill-cell"><button data-k="save" class="cream" aria-label="Save week.ics and week.md"></button><small>save</small></span>
+      <span class="pill-cell"><button data-k="print" class="cream" aria-label="Print the week sheet"></button><small>print</small></span>
+    </div>
+    <div class="grille" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  </div>
+</section><section class="manual" aria-label="Cartridge manual">
+  <p class="m-kicker" id="m-day">MON 02 Nov</p>
+  <div id="m-detail"><p class="m-fmt"><span class="pill">reel</span></p><h3 class="m-title">The shoebox</h3><p class="m-hook"><b>Hook.</b> I kept my invoices in a shoebox for two years.</p><ol class="m-beats"><li>Show the shoebox</li><li>The day I opened it</li><li>What I do instead now</li><li>Comment MORNING for the page</li></ol></div>
+  <p class="m-cta"><b>CTA.</b> Grab the Monday money page. Comment MORNING and I will send it.</p>
+  <details class="m-more" open><summary>Reel shot list</summary><ol class="m-shots"><li><b>Lid off the shoebox, overhead</b></li><li><b>Coffee poured next to an open notebook</b><span>warm light</span></li><li><b>Pen writing one number, close up</b></li><li><b>Laptop closing</b><span>end shot</span></li></ol></details>
+  <details class="m-more"><summary>This cartridge</summary>
+    <p><b>For.</b> creative freelancers who open their banking app with one eye shut</p><p><b>Promise.</b> Ten calm minutes a week and you will always know where your money is.</p></details>
+</section></div><section class="sheet" aria-label="Cartridge insert">
+  
+  <header class="s-label">
+    <div class="s-cart"><span class="s-kicker">cartridge insert · week of 02 Nov to 08 Nov 2026</span>
+      <h1>Money Mornings</h1>
+      <p class="s-for"><b>for</b> creative freelancers who open their banking app with one eye shut</p>
+      <p class="s-promise">Ten calm minutes a week and you will always know where your money is.</p><p class="s-scrawl">build your founder world</p></div><span class="stamp">LORE</span>
+  </header>
+  <ol class="s-week"><li class="s-row" data-day="0"><button class="box" data-k="done" data-day="0" aria-label="Mark MON done"></button><span class="s-day">MON<b>02</b></span><div class="s-slot"><p class="s-title">The shoebox <span class="pill">reel</span></p><p class="s-hook">I kept my invoices in a shoebox for two years.</p><ul class="s-beats"><li>Show the shoebox</li><li>The day I opened it</li><li>What I do instead now</li><li>Comment MORNING for the page</li></ul></div></li><li class="s-row" data-day="1"><button class="box" data-k="done" data-day="1" aria-label="Mark TUE done"></button><span class="s-day">TUE<b>03</b></span><div class="s-slot"><p class="s-title">Ten minute Monday <span class="pill">carousel</span></p><p class="s-hook">My whole money routine fits in one coffee.</p><ul class="s-beats"><li>Open the bank, no flinching</li><li>Mark who has paid</li><li>Move the tax money</li><li>Write one number down</li><li>Close the laptop</li></ul></div></li><li class="s-row" data-day="2"><button class="box" data-k="done" data-day="2" aria-label="Mark WED done"></button><span class="s-day">WED<b>04</b></span><div class="s-slot"><p class="s-title">Paid late, noticed later <span class="pill">post</span></p><p class="s-hook">A client paid me six months late. I noticed four months in.</p><ul class="s-beats"><li>What that cost me</li><li>The one list that fixes it</li></ul></div></li><li class="s-row" data-day="3"><button class="box" data-k="done" data-day="3" aria-label="Mark THU done"></button><span class="s-day">THU<b>05</b></span><div class="s-slot"><p class="s-title">Tax pot check <span class="pill">story</span></p><p class="s-hook">Quick one: do you move your tax money the day you get paid?</p><ul class="s-beats"><li>Yes or not yet poll</li><li>Share the results tomorrow</li></ul></div></li><li class="s-row" data-day="4"><button class="box" data-k="done" data-day="4" aria-label="Mark FRI done"></button><span class="s-day">FRI<b>06</b></span><div class="s-slot"><p class="s-title">Money with coffee <span class="pill">live</span></p><p class="s-hook">Bring your coffee, we do our numbers together.</p><ul class="s-beats"><li>Ten minutes on screen, live</li><li>Answer two questions</li><li>Send them the page</li></ul></div></li><li class="s-row" data-day="5"><button class="box" data-k="done" data-day="5" aria-label="Mark SAT done"></button><span class="s-day">SAT<b>07</b></span><div class="s-slot"><p class="s-title">Your Monday page <span class="pill">email</span></p><p class="s-hook">Here is the page I fill in every Monday.</p><ul class="s-beats"><li>Why paper first</li><li>How to fill it in</li><li>Reply and tell me your one number</li></ul></div></li><li class="s-row" data-day="6"><button class="box" data-k="done" data-day="6" aria-label="Mark SUN done"></button><span class="s-day">SUN<b>08</b></span><div class="s-slot"><p class="s-title">Invoice like you mean it <span class="pill">reel</span></p><p class="s-hook">Send the invoice the same day. Every time.</p><ul class="s-beats"><li>Finish the job</li><li>Invoice before you close the laptop</li><li>Watch what changes</li></ul></div></li></ol>
+  <div class="s-foot">
+    <div class="s-shots"><h2>Reel shot list</h2><ol><li>Lid off the shoebox, overhead</li><li>Coffee poured next to an open notebook <span>warm light</span></li><li>Pen writing one number, close up</li><li>Laptop closing <span>end shot</span></li></ol></div>
+    <div class="s-cta"><h2>CTA</h2><p>Grab the Monday money page. Comment MORNING and I will send it.</p><p class="s-credit">Rocha · @rocheverse · made with Rocha Coded</p></div>
+  </div>
+</section>
+<template id="t-row-0"><span class="fmt">RL</span><span class="ttl">The shoebox</span></template><template id="t-sheet-0"><p class="s-title">The shoebox <span class="pill">reel</span></p><p class="s-hook">I kept my invoices in a shoebox for two years.</p><ul class="s-beats"><li>Show the shoebox</li><li>The day I opened it</li><li>What I do instead now</li><li>Comment MORNING for the page</li></ul></template><template id="t-man-0"><p class="m-fmt"><span class="pill">reel</span></p><h3 class="m-title">The shoebox</h3><p class="m-hook"><b>Hook.</b> I kept my invoices in a shoebox for two years.</p><ol class="m-beats"><li>Show the shoebox</li><li>The day I opened it</li><li>What I do instead now</li><li>Comment MORNING for the page</li></ol></template>
+<template id="t-row-1"><span class="fmt">CA</span><span class="ttl">Ten minute Monday</span></template><template id="t-sheet-1"><p class="s-title">Ten minute Monday <span class="pill">carousel</span></p><p class="s-hook">My whole money routine fits in one coffee.</p><ul class="s-beats"><li>Open the bank, no flinching</li><li>Mark who has paid</li><li>Move the tax money</li><li>Write one number down</li><li>Close the laptop</li></ul></template><template id="t-man-1"><p class="m-fmt"><span class="pill">carousel</span></p><h3 class="m-title">Ten minute Monday</h3><p class="m-hook"><b>Hook.</b> My whole money routine fits in one coffee.</p><ol class="m-beats"><li>Open the bank, no flinching</li><li>Mark who has paid</li><li>Move the tax money</li><li>Write one number down</li><li>Close the laptop</li></ol></template>
+<template id="t-row-2"><span class="fmt">PO</span><span class="ttl">Paid late, noticed later</span></template><template id="t-sheet-2"><p class="s-title">Paid late, noticed later <span class="pill">post</span></p><p class="s-hook">A client paid me six months late. I noticed four months in.</p><ul class="s-beats"><li>What that cost me</li><li>The one list that fixes it</li></ul></template><template id="t-man-2"><p class="m-fmt"><span class="pill">post</span></p><h3 class="m-title">Paid late, noticed later</h3><p class="m-hook"><b>Hook.</b> A client paid me six months late. I noticed four months in.</p><ol class="m-beats"><li>What that cost me</li><li>The one list that fixes it</li></ol></template>
+<template id="t-row-3"><span class="fmt">ST</span><span class="ttl">Tax pot check</span></template><template id="t-sheet-3"><p class="s-title">Tax pot check <span class="pill">story</span></p><p class="s-hook">Quick one: do you move your tax money the day you get paid?</p><ul class="s-beats"><li>Yes or not yet poll</li><li>Share the results tomorrow</li></ul></template><template id="t-man-3"><p class="m-fmt"><span class="pill">story</span></p><h3 class="m-title">Tax pot check</h3><p class="m-hook"><b>Hook.</b> Quick one: do you move your tax money the day you get paid?</p><ol class="m-beats"><li>Yes or not yet poll</li><li>Share the results tomorrow</li></ol></template>
+<template id="t-row-4"><span class="fmt">LV</span><span class="ttl">Money with coffee</span></template><template id="t-sheet-4"><p class="s-title">Money with coffee <span class="pill">live</span></p><p class="s-hook">Bring your coffee, we do our numbers together.</p><ul class="s-beats"><li>Ten minutes on screen, live</li><li>Answer two questions</li><li>Send them the page</li></ul></template><template id="t-man-4"><p class="m-fmt"><span class="pill">live</span></p><h3 class="m-title">Money with coffee</h3><p class="m-hook"><b>Hook.</b> Bring your coffee, we do our numbers together.</p><ol class="m-beats"><li>Ten minutes on screen, live</li><li>Answer two questions</li><li>Send them the page</li></ol></template>
+<template id="t-row-5"><span class="fmt">EM</span><span class="ttl">Your Monday page</span></template><template id="t-sheet-5"><p class="s-title">Your Monday page <span class="pill">email</span></p><p class="s-hook">Here is the page I fill in every Monday.</p><ul class="s-beats"><li>Why paper first</li><li>How to fill it in</li><li>Reply and tell me your one number</li></ul></template><template id="t-man-5"><p class="m-fmt"><span class="pill">email</span></p><h3 class="m-title">Your Monday page</h3><p class="m-hook"><b>Hook.</b> Here is the page I fill in every Monday.</p><ol class="m-beats"><li>Why paper first</li><li>How to fill it in</li><li>Reply and tell me your one number</li></ol></template>
+<template id="t-row-6"><span class="fmt">RL</span><span class="ttl">Invoice like you mean it</span></template><template id="t-sheet-6"><p class="s-title">Invoice like you mean it <span class="pill">reel</span></p><p class="s-hook">Send the invoice the same day. Every time.</p><ul class="s-beats"><li>Finish the job</li><li>Invoice before you close the laptop</li><li>Watch what changes</li></ul></template><template id="t-man-6"><p class="m-fmt"><span class="pill">reel</span></p><h3 class="m-title">Invoice like you mean it</h3><p class="m-hook"><b>Hook.</b> Send the invoice the same day. Every time.</p><ol class="m-beats"><li>Finish the job</li><li>Invoice before you close the laptop</li><li>Watch what changes</li></ol></template>
+<template id="t-row-rest"><span class="fmt rest">ZZ</span><span class="ttl">rest day</span></template><template id="t-sheet-rest"><p class="s-title rest">Rest day</p><p class="s-hook">Reply to comments, save ideas, live your life.</p></template><template id="t-man-rest"><h3 class="m-title">Rest day</h3><p class="m-hook">Nothing to post. Reply to comments, save ideas, live your life.</p></template>
+<script type="application/json" id="cart-data">{"slug": "money-mornings", "name": "Money Mornings", "audience": "creative freelancers who open their banking app with one eye shut", "promise": "Ten calm minutes a week and you will always know where your money is.", "cta": "Grab the Monday money page. Comment MORNING and I will send it.", "posts": [{"title": "The shoebox", "format": "reel", "hook": "I kept my invoices in a shoebox for two years.", "beats": ["Show the shoebox", "The day I opened it", "What I do instead now", "Comment MORNING for the page"]}, {"title": "Ten minute Monday", "format": "carousel", "hook": "My whole money routine fits in one coffee.", "beats": ["Open the bank, no flinching", "Mark who has paid", "Move the tax money", "Write one number down", "Close the laptop"]}, {"title": "Paid late, noticed later", "format": "post", "hook": "A client paid me six months late. I noticed four months in.", "beats": ["What that cost me", "The one list that fixes it"]}, {"title": "Tax pot check", "format": "story", "hook": "Quick one: do you move your tax money the day you get paid?", "beats": ["Yes or not yet poll", "Share the results tomorrow"]}, {"title": "Money with coffee", "format": "live", "hook": "Bring your coffee, we do our numbers together.", "beats": ["Ten minutes on screen, live", "Answer two questions", "Send them the page"]}, {"title": "Your Monday page", "format": "email", "hook": "Here is the page I fill in every Monday.", "beats": ["Why paper first", "How to fill it in", "Reply and tell me your one number"]}, {"title": "Invoice like you mean it", "format": "reel", "hook": "Send the invoice the same day. Every time.", "beats": ["Finish the job", "Invoice before you close the laptop", "Watch what changes"]}], "shot_list": [{"shot": "Lid off the shoebox, overhead"}, {"shot": "Coffee poured next to an open notebook", "note": "warm light"}, {"shot": "Pen writing one number, close up"}, {"shot": "Laptop closing", "note": "end shot"}], "start": "2026-11-02", "slots": [0, 1, 2, 3, 4, 5, 6], "seed": 0}</script>
+<script>/* content-cartridge page script. Python renders every fragment; this only moves them between days,
+   remembers what is done, and writes week.ics and week.md from the current week.
+   week.ics and week.md here mirror cartridge.py exactly; tests/test_cartridge.py checks they match. */
+(function () {
+  "use strict";
+  var DATA = JSON.parse(document.getElementById("cart-data").textContent);
+  var DAY_NAMES = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+  var DAYS = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
+  var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  var KEY = "content-cartridge:" + DATA.slug + ":" + DATA.start;
+  var state = { slots: DATA.slots.slice(), done: [false, false, false, false, false, false, false],
+                sel: 0, held: null, started: false };
+  var selftest = /selftest/.test(location.hash);
+  var autoplay = selftest || /play/.test(location.hash);
+
+  function $(s, root) { return (root || document).querySelector(s); }
+  function $$(s, root) { return Array.prototype.slice.call((root || document).querySelectorAll(s)); }
+
+  function load() {
+    if (selftest) return;
+    try {
+      var saved = JSON.parse(window.localStorage.getItem(KEY) || "null");
+      if (saved && saved.slots && saved.slots.length === 7 && saved.done && saved.done.length === 7) {
+        state.slots = saved.slots; state.done = saved.done;
+      }
+    } catch (err) { state.note = "This browser is not keeping notes, so done marks reset on reload."; }
+  }
+  function save() {
+    if (selftest) return;
+    try { window.localStorage.setItem(KEY, JSON.stringify({ slots: state.slots, done: state.done })); }
+    catch (err) { state.note = "This browser is not keeping notes, so done marks reset on reload."; }
+  }
+
+  function dateOf(i) {
+    var p = DATA.start.split("-");
+    return new Date(Date.UTC(+p[0], +p[1] - 1, +p[2] + i));
+  }
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
+  function ymd(d) { return d.getUTCFullYear() + pad(d.getUTCMonth() + 1) + pad(d.getUTCDate()); }
+  function iso(d) { return d.getUTCFullYear() + "-" + pad(d.getUTCMonth() + 1) + "-" + pad(d.getUTCDate()); }
+
+  function tpl(kind, post) {
+    var t = document.getElementById("t-" + kind + "-" + (post === null ? "rest" : post));
+    return t ? t.innerHTML : "";
+  }
+
+  function paint() {
+    $$(".row").forEach(function (row) {
+      var i = +row.getAttribute("data-day");
+      $(".slot", row).innerHTML = tpl("row", state.slots[i]);
+      row.classList.toggle("sel", i === state.sel);
+      row.classList.toggle("done", state.done[i]);
+      row.classList.toggle("held", i === state.held);
+    });
+    $$(".s-row").forEach(function (row) {
+      var i = +row.getAttribute("data-day");
+      $(".s-slot", row).innerHTML = tpl("sheet", state.slots[i]);
+      row.classList.toggle("done", state.done[i]);
+      var box = $(".box", row);
+      if (box) box.setAttribute("aria-pressed", state.done[i] ? "true" : "false");
+    });
+    var det = $("#m-detail");
+    if (det) {
+      var d = dateOf(state.sel);
+      det.innerHTML = tpl("man", state.slots[state.sel]);
+      $("#m-day").textContent = DAYS[state.sel] + " " + pad(d.getUTCDate()) + " " + MONTHS[d.getUTCMonth()] +
+        (state.done[state.sel] ? " · done" : "");
+    }
+  }
+  function say(msg) { var s = $(".status"); if (s) s.textContent = msg; }
+
+  function start() {
+    state.started = true;
+    var boot = $(".boot"), wk = $(".weekview");
+    if (boot) boot.hidden = true;
+    if (wk) wk.hidden = false;
+    paint();
+    say(state.note || "A done · B swap · SEL shuffle");
+  }
+
+  function shuffle() {
+    var idx = [], posts = [];
+    state.slots.forEach(function (p, i) { if (p !== null) { idx.push(i); posts.push(p); } });
+    for (var i = posts.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1)), t = posts[i]; posts[i] = posts[j]; posts[j] = t;
+    }
+    idx.forEach(function (d, k) { state.slots[d] = posts[k]; });
+    state.done = state.done.map(function () { return false; });
+    state.held = null;
+    save(); paint(); say("shuffled. rest days stay put");
+  }
+
+  function swap() {
+    if (state.held === null) { state.held = state.sel; paint(); say("move, then B again to swap"); return; }
+    var a = state.held, b = state.sel;
+    var t = state.slots[a]; state.slots[a] = state.slots[b]; state.slots[b] = t;
+    var u = state.done[a]; state.done[a] = state.done[b]; state.done[b] = u;
+    state.held = null;
+    save(); paint(); say(a === b ? "swap cancelled" : DAYS[a] + " and " + DAYS[b] + " swapped");
+  }
+
+  function toggleDone(i) {
+    state.done[i] = !state.done[i];
+    save(); paint();
+    var left = state.slots.filter(function (p, k) { return p !== null && !state.done[k]; }).length;
+    say(left ? left + " to go" : "week done. well played");
+  }
+
+  /* ---------- week.ics and week.md (mirrors cartridge.py) ---------- */
+  function icsEscape(s) {
+    return String(s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,")
+      .replace(/\r\n/g, "\\n").replace(/\n/g, "\\n");
+  }
+  function icsFold(line) {
+    var enc = new TextEncoder(), out = [], cur = "", len = 0;
+    Array.from(line).forEach(function (ch) {
+      var b = enc.encode(ch).length;
+      if (len + b > (out.length ? 74 : 75)) { out.push(cur); cur = ""; len = 0; }
+      cur += ch; len += b;
+    });
+    out.push(cur);
+    return out.join("\r\n ");
+  }
+  function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+  function description(post) {
+    var lines = ["Hook: " + post.hook, ""].concat(post.beats.map(function (b) { return "- " + b; }));
+    return lines.concat(["", "CTA: " + DATA.cta, "Pillar: " + DATA.name]).join("\n");
+  }
+  function buildIcs(stamp) {
+    var rows = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Rocha Coded//content-cartridge//EN",
+      "CALSCALE:GREGORIAN", "METHOD:PUBLISH", "X-WR-CALNAME:" + icsEscape(DATA.name)];
+    state.slots.forEach(function (p, i) {
+      if (p === null) return;
+      var post = DATA.posts[p], d = dateOf(i), next = dateOf(i + 1);
+      rows.push("BEGIN:VEVENT", "UID:" + DATA.slug + "-" + ymd(d) + "-" + p + "@content-cartridge",
+        "DTSTAMP:" + stamp, "DTSTART;VALUE=DATE:" + ymd(d), "DTEND;VALUE=DATE:" + ymd(next),
+        "SUMMARY:" + icsEscape("[" + cap(post.format) + "] " + post.title),
+        "DESCRIPTION:" + icsEscape(description(post)), "CATEGORIES:" + icsEscape(DATA.name),
+        "TRANSP:TRANSPARENT", "END:VEVENT");
+    });
+    rows.push("END:VCALENDAR");
+    return rows.map(icsFold).join("\r\n") + "\r\n";
+  }
+  function buildMd() {
+    var out = ["# " + DATA.name + ": the week of " + iso(dateOf(0)), "", "For: " + DATA.audience,
+      "Promise: " + DATA.promise, "CTA: " + DATA.cta, ""];
+    state.slots.forEach(function (p, i) {
+      var d = dateOf(i), head = "## " + DAY_NAMES[i] + " " + d.getUTCDate() + " " + MONTHS[d.getUTCMonth()];
+      if (p === null) { out.push(head, "", "Rest day. Reply to comments, save ideas, live your life.", ""); return; }
+      var post = DATA.posts[p];
+      out.push(head + ": " + post.title + " (" + post.format + ")", "", "**Hook:** " + post.hook, "");
+      post.beats.forEach(function (b) { out.push("- " + b); });
+      out.push("");
+    });
+    out.push("## Reel shot list", "");
+    DATA.shot_list.forEach(function (s, i) { out.push((i + 1) + ". " + s.shot + (s.note ? " (" + s.note + ")" : "")); });
+    out.push("", "Week ends " + iso(dateOf(6)) + ". Made with content-cartridge.", "");
+    return out.join("\n");
+  }
+  function utcStamp() {
+    var n = new Date();
+    return n.getUTCFullYear() + pad(n.getUTCMonth() + 1) + pad(n.getUTCDate()) + "T" +
+      pad(n.getUTCHours()) + pad(n.getUTCMinutes()) + pad(n.getUTCSeconds()) + "Z";
+  }
+  function download(name, text, type) {
+    var url = URL.createObjectURL(new Blob([text], { type: type }));
+    var a = document.createElement("a");
+    a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
+  }
+  function saveFiles() {
+    download("week.ics", buildIcs(utcStamp()), "text/calendar");
+    setTimeout(function () { download("week.md", buildMd(), "text/markdown"); }, 400);
+    say("saved week.ics + week.md");
+  }
+
+  /* ---------- buttons and keys ---------- */
+  function press(k, day) {
+    if (k === "print") { window.print(); return; }
+    if (k === "save") { saveFiles(); return; }
+    if (k === "done") { toggleDone(+day); return; }
+    if (k === "select" && !document.querySelector(".handheld")) { shuffle(); return; }
+    if (!state.started) { if (k === "start" || k === "a") start(); return; }
+    if (k === "up" || k === "left") { state.sel = (state.sel + 6) % 7; paint(); }
+    else if (k === "down" || k === "right") { state.sel = (state.sel + 1) % 7; paint(); }
+    else if (k === "a") toggleDone(state.sel);
+    else if (k === "b") swap();
+    else if (k === "select") shuffle();
+    else if (k === "start") { state.sel = 0; state.held = null; paint(); say("back to monday"); }
+  }
+  document.addEventListener("click", function (ev) {
+    var btn = ev.target.closest("[data-k]");
+    if (btn) press(btn.getAttribute("data-k"), btn.getAttribute("data-day"));
+    var row = ev.target.closest(".row");
+    if (row && state.started) { state.sel = +row.getAttribute("data-day"); paint(); }
+  });
+  var KEYS = { ArrowUp: "up", ArrowDown: "down", ArrowLeft: "left", ArrowRight: "right", Enter: "start",
+               a: "a", x: "a", b: "b", z: "b", Shift: "select", s: "save", p: "print" };
+  document.addEventListener("keydown", function (ev) {
+    if (ev.metaKey || ev.ctrlKey || ev.altKey) return;
+    var k = KEYS[ev.key] || KEYS[(ev.key || "").toLowerCase()];
+    if (!k || !document.querySelector(".handheld")) return;
+    if (/^Arrow/.test(ev.key)) ev.preventDefault();
+    press(k);
+  });
+
+  load();
+  paint();
+  if (selftest || /still/.test(location.hash)) document.body.classList.add("still");
+  if (autoplay) start();
+  if (selftest) {
+    var out = document.createElement("div");
+    out.id = "selftest"; out.hidden = true;
+    out.setAttribute("data-ics", buildIcs("20260101T000000Z"));
+    out.setAttribute("data-md", buildMd());
+    document.body.appendChild(out);
+  }
+})();
+</script>
+</body></html>
