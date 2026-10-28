@@ -35,5 +35,7 @@ body.m-y2k-blog { padding: 20px 12px 40px;
   .side section { margin: 0; }
   .side .sparkle, .side .updated { grid-column: 1 / -1; }
 }
-@media (max-width: 420px) { body.m-y2k-blog { padding: 12px 8px 30px; } .win { box-shadow: 4px 4px 0 var(--ink); }
-  .winbody .play { padding: 18px 6px 24px; } }
+@media (max-width: 720px) { body.m-y2k-blog { padding: 16px 16px 32px; }
+  .win { --hh: min(360px, calc(100vw - 56px)); box-shadow: 4px 4px 0 var(--ink); }
+  .win .manual { width: min(380px, calc(100vw - 56px)); }
+  .winbody .play { padding: 18px 8px 24px; } }
